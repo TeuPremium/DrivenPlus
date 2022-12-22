@@ -1,21 +1,22 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+
 body{
-    font-family: Lexend Deca;
+    font-family: roboto;
     background-color: ${prop =>prop.color};
 }
 h1{
         font-weight: 400;
-        font-size: 20px;
+        font-size: 32px;
         margin-left: 5%;
-        color: #666666;
+        color: #ffffff;
     }
 h2{
-    font-weight: 400;
-    font-size:13px;
+    font-weight: 700;
+    font-size:24px;
     margin-left:5% ;
-    color: #666666;
+    color: white;
 }
 h3{
     font-weight: 400;

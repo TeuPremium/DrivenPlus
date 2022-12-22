@@ -6,6 +6,7 @@ import Login from './Components/Routes/Login';
 import GlobalStyle from './Styles/GlobalStyle'
 
 import Cadastro from './Components/Routes/SignUp';
+import Subscriptions from './Components/Routes/Subscriptions/Subscriptions';
 
 function App() {
  
@@ -21,6 +22,7 @@ function App() {
           
             <Route path='/' element={<Login/>}/>
             <Route path='/sign-up' element={<Cadastro/>}/>
+            <Route path='/subscriptions' element={<Subscriptions/>}/>
          
            
       </Routes>
