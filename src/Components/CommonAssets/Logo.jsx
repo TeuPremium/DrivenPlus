@@ -1,7 +1,7 @@
 import styled from "styled-components"
 export default function(prop){
     
-    return(
+    if(!prop.src){return(
         <Style color={prop.color}>
         <Driven>
         <svg width="92" height="95" viewBox="0 0 92 95" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12,7 +12,12 @@ export default function(prop){
         <svg xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
         </Plus>
         </Style>
-    )
+    )}
+    else{
+        return(
+            <img src={prop.src}/>
+        )
+    }
 }
 
 const Style = styled.div`

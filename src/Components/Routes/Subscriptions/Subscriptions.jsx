@@ -37,10 +37,10 @@ export default function(){
         <GlobalStyle color='black'/>
         <span><h1>Escolha seu plano</h1></span>
 
-        {plans.map((n) => <Link to="/subscriptions/id">
+        {plans.map((n) => <Link style={{textDecoration:'none'}} to={`/subscriptions/${n.id}`}>
         <PlanCard>
-            <Logo color='white'></Logo>
-             <span><h2>{n.price}</h2></span> 
+            <Logo src={n.image} ></Logo>
+             <span><h2>R$ {n.price}</h2></span> 
         </PlanCard>
         </Link>)}
 
@@ -50,7 +50,7 @@ export default function(){
         return( 
             <>
             <GlobalStyle color="black"/>
-            <Loading/>
+                <Loading/>
             </>
         )
     }
@@ -83,7 +83,11 @@ const PlanCard = styled.div`
     display: flex;
     align-items: center;
     align-content: center;
-   span{
+    box-sizing: border-box;
+    padding-left: 15px;
+    span{
         width: 110px;
+        margin-left: 15px;
     }
+    
 `
