@@ -34,9 +34,9 @@ return (
         
         <div><input id='pwd' name="pwd" placeholder="senha" type="password" {...register("password", { required: true })} /></div>
         {errors.password && <div>Digite sua senha correta!</div>}
-        <Link to="/subscriptions">
+        
     <SubmitBtn> <input value="Cadastrar" style={{background:'#ff4791', color:'white'}} type="submit" /></SubmitBtn>
-        </Link>
+
     </form>
          <Link to='/'>
          <LoginHook> Ja possui uma conta? Faca login.</LoginHook>

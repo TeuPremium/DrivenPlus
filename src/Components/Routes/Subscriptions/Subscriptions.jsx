@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 import GlobalStyle from "../../../Styles/GlobalStyle"
 import Logo from "../../CommonAssets/Logo"
@@ -6,10 +7,13 @@ export default function(){
         <Container>
         <GlobalStyle color='black'/>
         <span><h1>Escolha seu plano</h1></span>
+
+        <Link to="/subscriptions/id">
         <PlanCard>
             <Logo color='white'></Logo>
             <span><h2>R$ 39,99</h2></span>
         </PlanCard>
+        </Link>
 
         <PlanCard>
             <Logo color='#fff16f'></Logo>

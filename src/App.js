@@ -7,6 +7,8 @@ import GlobalStyle from './Styles/GlobalStyle'
 
 import Cadastro from './Components/Routes/SignUp';
 import Subscriptions from './Components/Routes/Subscriptions/Subscriptions';
+import SubscriptionCheckout from './Components/Routes/Subscriptions/SubscriptionCheckout';
+import Fail from './Components/CommonAssets/Fail';
 
 function App() {
  
@@ -23,8 +25,8 @@ function App() {
             <Route path='/' element={<Login/>}/>
             <Route path='/sign-up' element={<Cadastro/>}/>
             <Route path='/subscriptions' element={<Subscriptions/>}/>
-         
-           
+            <Route path='/subscriptions/:id' element={<SubscriptionCheckout/>}/>
+            
       </Routes>
     </BrowserRouter>
   );
