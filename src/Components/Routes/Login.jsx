@@ -20,7 +20,6 @@ const {setUser} = useContext(UserContext)
 function onSubmit(data){ 
     const submitData = axios.post(`${URL}/login`, data)
     submitData.then((res) =>{
-            console.log(res)
             navigate('/subscriptions')
             setToken(res.data.token)
             setUser(res.data)
@@ -30,7 +29,6 @@ function onSubmit(data){
         alert(err.response.data.message)
     })
     
-    console.log(data);
     }
 
 

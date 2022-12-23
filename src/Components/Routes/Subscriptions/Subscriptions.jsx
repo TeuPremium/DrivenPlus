@@ -21,7 +21,7 @@ export default function(){
                 Authorization: `Bearer ${token}`
             }
         }
-        console.log(config)
+        
         const promise = axios.get(`${URL2}memberships`, config)
         promise.then((res) => {setPlans(res.data)})
         promise.catch(console.log)
@@ -29,7 +29,6 @@ export default function(){
     } ,[]
     )
 
-    console.log(plans)
     if(token){
         if(plans)
         {return(

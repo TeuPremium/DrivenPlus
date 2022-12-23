@@ -20,7 +20,6 @@ const {setUser} = useContext(UserContext)
 function onSubmit(data){ 
     const submitData = axios.post(`${URL}/sign-up`, data)
     submitData.then((res) =>{
-            console.log(res)
             navigate('/')
             setToken(res.data.token)
             setUser(res.data)
@@ -29,17 +28,17 @@ function onSubmit(data){
     submitData.catch((err) => {
         alert(err.response.data.message)
     })
-    
-    console.log(data);
     }
 
 
-console.log(watch("example")); // watch input value by passing the name of it
+
 
 return (
 
     <Container>
         <GlobalStyle color="black"></GlobalStyle>
+
+        <Logo></Logo>
 
         <form onSubmit={handleSubmit(onSubmit)}>
         

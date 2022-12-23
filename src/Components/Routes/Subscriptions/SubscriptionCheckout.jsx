@@ -3,24 +3,47 @@ import styled from "styled-components";
 import Logo from "../../CommonAssets/Logo";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
+import URL2 from "../../CommonAssets/URL2";
+import AuthContext from "../../Contexts/AuthContext";
+import UserContext from "../../Contexts/UserContext";
+import { useContext } from "react";
+import Loading from "../../CommonAssets/Loading";
 
 
 export default function(){
+    const {token} = useContext(AuthContext)
+    const params = useParams()
+    const id = params.id
+    console.log(params)
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const [benefits, setBenefits] = useState()
-    const [price, setPrice] = useState()
+    const [plan, setPlan] = useState()
+    
     const onSubmit = data => console.log(data);
 
-
-    console.log(watch("example")); 
-
-    return(
+    useEffect( ()=>{
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+        
+        const promise = axios.get(`${URL2}memberships/${id}`, config)
+        promise.then((res) => {setPlan(res.data)})
+        promise.catch(console.log)
+        
+    } ,[]
+    )
+    console.log(plan)
+    if(plan){return(
         <Container>
         <GlobalStyle color='black'/>
         <Logo/>
         <Title><h1>Driven Plus</h1>
-        <h3>Beneficios: {benefits}</h3>
-        <h3>Preco: {price}</h3>
+        <h3>Beneficios: </h3>
+        <h3>Preco: R$ {plan.price}</h3>
         </Title>
 
 
@@ -45,7 +68,15 @@ export default function(){
         {/* <CheckoutConfirm></CheckoutConfirm> */}
 
         </Container>
-    )
+    )}
+    else{
+        return(
+        <>
+        <GlobalStyle color="black"></GlobalStyle>
+        <Loading/>
+        </>
+        )
+    }
 }
 
 const Container = styled.div`
