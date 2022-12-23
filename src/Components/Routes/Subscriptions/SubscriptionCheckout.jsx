@@ -2,10 +2,13 @@ import GlobalStyle from "../../../Styles/GlobalStyle";
 import styled from "styled-components";
 import Logo from "../../CommonAssets/Logo";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 
 export default function(){
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const [benefits, setBenefits] = useState()
+    const [price, setPrice] = useState()
     const onSubmit = data => console.log(data);
 
 
@@ -16,8 +19,8 @@ export default function(){
         <GlobalStyle color='black'/>
         <Logo/>
         <Title><h1>Driven Plus</h1>
-        <h3>Beneficios</h3>
-        <h3>Preco: </h3>
+        <h3>Beneficios: {benefits}</h3>
+        <h3>Preco: {price}</h3>
         </Title>
 
 

@@ -7,12 +7,32 @@ import { useContext } from "react";
 import AuthContext from "../Contexts/AuthContext";
 import UserContext from "../Contexts/UserContext";
 import GlobalStyle from "../../Styles/GlobalStyle";
+import URL from "../CommonAssets/URL";
 
 
 export default function () {
 
 const { register, handleSubmit, watch, formState: { errors } } = useForm();
-const onSubmit = data => console.log(data);
+const navigate = useNavigate()
+const {setToken} = useContext(AuthContext)
+const {setUser} = useContext(UserContext)
+
+function onSubmit(data){ 
+    const submitData = axios.post(`${URL}/sign-up`, data)
+    submitData.then((res) =>{
+            console.log(res)
+            navigate('/')
+            setToken(res.data.token)
+            setUser(res.data)
+            })
+    
+    submitData.catch((err) => {
+        alert(err.response.data.message)
+    })
+    
+    console.log(data);
+    }
+
 
 console.log(watch("example")); // watch input value by passing the name of it
 
