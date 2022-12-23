@@ -14,15 +14,12 @@ export default function () {
 
 const { register, handleSubmit, watch, formState: { errors } } = useForm();
 const navigate = useNavigate()
-const {setToken} = useContext(AuthContext)
-const {setUser} = useContext(UserContext)
+
 
 function onSubmit(data){ 
     const submitData = axios.post(`${URL}/sign-up`, data)
     submitData.then((res) =>{
             navigate('/')
-            setToken(res.data.token)
-            setUser(res.data)
             })
     
     submitData.catch((err) => {
@@ -36,7 +33,7 @@ function onSubmit(data){
 return (
 
     <Container>
-        <GlobalStyle color="black"></GlobalStyle>
+        <GlobalStyle color="#0e0e13"></GlobalStyle>
 
         <Logo></Logo>
 

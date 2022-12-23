@@ -35,7 +35,7 @@ function onSubmit(data){
 return (
 
     <Container>
-        <GlobalStyle color="black"></GlobalStyle>
+        <GlobalStyle color="#0e0e13"></GlobalStyle>
         <Logo/>
 
         <form onSubmit={handleSubmit(onSubmit)}>

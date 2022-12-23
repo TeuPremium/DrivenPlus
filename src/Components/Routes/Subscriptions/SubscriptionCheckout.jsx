@@ -14,18 +14,35 @@ import Loading from "../../CommonAssets/Loading";
 import Fail from "../../CommonAssets/Fail";
 import Price from "../../CommonAssets/PriceSVG";
 import BenefitSVG from "../../CommonAssets/BenefitSVG";
+import { useNavigate } from "react-router-dom";
 
 
 export default function(){
     const {token} = useContext(AuthContext)
     const params = useParams()
     const id = params.id
-    
+    const navigate = useNavigate()
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [plan, setPlan] = useState()
     const [perks, setPerks] = useState()
     
-    const onSubmit = data => console.log(data);
+    function onSubmit(data){
+        data.membershipId = id
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+        console.log(data)
+        const submitData = axios.post(`${URL2}`, data, config)
+        submitData.then((res) =>{
+                console.log(res)
+                })
+        
+        submitData.catch((err) => {
+            alert(err.response.data.message)
+        })
+        }
 
     useEffect( ()=>{
         const config = {
@@ -55,19 +72,19 @@ export default function(){
         <div><h3><Price/> Preco:</h3> <h3>&emsp;&nbsp;R$ {plan.price}</h3></div>
         </Description>
         <div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} {...register("membershipId")}>
         
         <div><input placeholder="Nome impresso no cartao" id='name' name="name" type="name" {...register("cardName", {required:true})} /></div>
         {errors.email && <div><h3>Insira seu Email</h3></div>}
 
-        <div><input placeholder="Digitos do cartao" id='email' name="email" type="number" {...register("cardNuber", {required:true})} /></div>
+        <div><input placeholder="Digitos do cartao" id='number' name="number" type="number" {...register("cardNumber", {required:true})} /></div>
         {errors.email && <div><h3>Digite Seu CPF</h3></div>}
 
         <LowerContainer>
-        <div><input placeholder="codigo de seguranca" id='email' name="email" type="email" {...register("securityNumber", {required:true})} /></div>
+        <div><input placeholder="codigo de seguranca" id='number' name="number" type="number" {...register("securityNumber", {required:true , valueAsNumber:true})} /></div>
         {errors.email && <div><h3>Insira seu Email</h3></div>}
         
-        <div><input id='pwd' name="pwd" placeholder="validade" type="" {...register("expirationDate", { required: true })} /></div>
+        <div><input id='pwd' name="pwd" placeholder="validade" type="month" {...register("expirationDate", { required: true })} /></div>
         {errors.password && <div>Digite sua senha correta!</div>}
         </LowerContainer>
     <SubmitBtn> <input value="Cadastrar" style={{background:'#ff4791', color:'white'}} type="submit" /></SubmitBtn>
