@@ -37,6 +37,7 @@ export default function(){
         const submitData = axios.post(`${URL2}`, data, config)
         submitData.then((res) =>{
                 console.log(res)
+                navigate('/home')
                 })
         
         submitData.catch((err) => {

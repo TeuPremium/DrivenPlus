@@ -2,10 +2,29 @@ import styled from "styled-components";
 import GlobalStyle from "../../../Styles/GlobalStyle";
 import Logo from "../../CommonAssets/Logo";
 import UserSVG from "../../CommonAssets/UserSVG";
-
+import { useContext } from "react";
+import AuthContext from "../../Contexts/AuthContext";
+import { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
+import URL2 from "../../CommonAssets/URL2";
 
 export default function(){
-
+    const {token} = useContext(AuthContext)
+    const [plan, setPlan] = useState()
+    useEffect( ()=>{
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+        
+        const promise = axios.get(`${URL2}memberships`, config)
+        promise.then((res) => {setPlan(res.data)})
+        promise.catch(console.log)
+        
+    } ,[]
+    )
 
     return(
         <Container>
