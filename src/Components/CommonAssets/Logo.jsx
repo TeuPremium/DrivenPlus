@@ -1,6 +1,6 @@
 import styled from "styled-components"
 export default function(prop){
-    console.log(prop.color)
+    
     return(
         <Style color={prop.color}>
         <Driven>

@@ -11,6 +11,7 @@ import SubscriptionCheckout from './Components/Routes/Subscriptions/Subscription
 import Fail from './Components/CommonAssets/Fail';
 import AuthContext from './Components/Contexts/AuthContext';
 import UserContext from './Components/Contexts/UserContext';
+import Loading from './Components/CommonAssets/Loading';
 
 function App() {
  
@@ -36,6 +37,7 @@ function App() {
     </UserContext.Provider>
     </AuthContext.Provider>
   );
+  
 }
 
 export default App;

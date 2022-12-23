@@ -11,6 +11,7 @@
     "react-dom": "^18.2.0",
     "react-global-style": "^0.2.1",
     "react-hook-form": "^7.41.0",
+    "react-loading": "^2.0.3",
     "react-router-dom": "^6.6.0",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
