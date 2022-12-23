@@ -11,15 +11,19 @@ import AuthContext from "../../Contexts/AuthContext";
 import UserContext from "../../Contexts/UserContext";
 import { useContext } from "react";
 import Loading from "../../CommonAssets/Loading";
+import Fail from "../../CommonAssets/Fail";
+import Price from "../../CommonAssets/PriceSVG";
+import BenefitSVG from "../../CommonAssets/BenefitSVG";
 
 
 export default function(){
     const {token} = useContext(AuthContext)
     const params = useParams()
     const id = params.id
-    console.log(params)
+    
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [plan, setPlan] = useState()
+    const [perks, setPerks] = useState()
     
     const onSubmit = data => console.log(data);
 
@@ -31,22 +35,26 @@ export default function(){
         }
         
         const promise = axios.get(`${URL2}memberships/${id}`, config)
-        promise.then((res) => {setPlan(res.data)})
+        promise.then((res) => {setPlan(res.data); setPerks(res.data.perks)})
         promise.catch(console.log)
         
     } ,[]
     )
-    console.log(plan)
-    if(plan){return(
+   
+    
+
+    if(token){if(plan){return(
         <Container>
-        <GlobalStyle color='black'/>
-        <Logo/>
-        <Title><h1>Driven Plus</h1>
-        <h3>Beneficios: </h3>
-        <h3>Preco: R$ {plan.price}</h3>
+        <GlobalStyle color='#0e0e13'/>
+        <Title>
+        <Logo src={plan.image}/>
+        <span><h1>Driven Plus</h1></span>
         </Title>
-
-
+        <Description>
+        <h3><BenefitSVG/> Beneficios: {perks.map((n, index) => <h3>{index+1}. {n.title}</h3>)}</h3>
+        <div><h3><Price/> Preco:</h3> <h3>&emsp;&nbsp;R$ {plan.price}</h3></div>
+        </Description>
+        <div>
         <form onSubmit={handleSubmit(onSubmit)}>
         
         <div><input placeholder="Nome impresso no cartao" id='name' name="name" type="name" {...register("cardName", {required:true})} /></div>
@@ -62,9 +70,9 @@ export default function(){
         <div><input id='pwd' name="pwd" placeholder="validade" type="" {...register("expirationDate", { required: true })} /></div>
         {errors.password && <div>Digite sua senha correta!</div>}
         </LowerContainer>
-
     <SubmitBtn> <input value="Cadastrar" style={{background:'#ff4791', color:'white'}} type="submit" /></SubmitBtn>
     </form>
+        </div>
         {/* <CheckoutConfirm></CheckoutConfirm> */}
 
         </Container>
@@ -72,10 +80,13 @@ export default function(){
     else{
         return(
         <>
-        <GlobalStyle color="black"></GlobalStyle>
+        <GlobalStyle color="#0e0e13"></GlobalStyle>
         <Loading/>
         </>
         )
+    }}
+    else{
+        return(<Fail/>)
     }
 }
 
@@ -107,6 +118,9 @@ const Container = styled.div`
         color:#dbdbdb;    
         }
         }
+        form{
+            margin-top: 70px;
+        }
     
 `
 
@@ -127,6 +141,12 @@ const CheckoutConfirm = styled.div`
 
 const Title = styled.div `
     width: 190px;
+    position: relative;
+    top:80px;
+    
+    span{
+        position: relative;
+    }
 `
 const LowerContainer = styled.div`
 display: flex;
@@ -135,4 +155,14 @@ justify-content: space-between;
 input{
     width: 148px;
 }
+`
+
+const Description = styled.div`
+    width: 303px;
+    position: relative;
+    top: 60px;
+    right: 13px;
+    div{
+        margin-top: 20px;
+    }
 `

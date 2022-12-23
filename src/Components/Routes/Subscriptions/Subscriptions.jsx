@@ -33,7 +33,7 @@ export default function(){
         if(plans)
         {return(
         <Container>
-        <GlobalStyle color='black'/>
+        <GlobalStyle color='#0e0e13'/>
         <span><h1>Escolha seu plano</h1></span>
 
         {plans.map((n) => <Link style={{textDecoration:'none'}} to={`/subscriptions/${n.id}`}>
@@ -48,7 +48,7 @@ export default function(){
     else{
         return( 
             <>
-            <GlobalStyle color="black"/>
+            <GlobalStyle color="#0e0e13"/>
                 <Loading/>
             </>
         )

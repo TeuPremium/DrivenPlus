@@ -20,10 +20,10 @@ h2{
 }
 h3{
     font-weight: 400;
-    font-size:11px;
+    font-size:14px;
     margin-left:5% ;
-    color: #666666;
-    line-height: 0px;
+    color: white;
+    line-height: 5px;
 }
 `
 export default GlobalStyle;

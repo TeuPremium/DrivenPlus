@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 export default function(){
     return(
         <Container>
-        <GlobalStyle color='black'/>
+        <GlobalStyle color='#0e0e13'/>
         <h1>Faca login para acessar esta pagina.</h1>
         <Link to='/'>
         <StyledButton>Ir para pagina inicial</StyledButton>
