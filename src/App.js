@@ -12,6 +12,7 @@ import Fail from './Components/CommonAssets/Fail';
 import AuthContext from './Components/Contexts/AuthContext';
 import UserContext from './Components/Contexts/UserContext';
 import Loading from './Components/CommonAssets/Loading';
+import Home from './Components/Routes/Home/Home';
 
 function App() {
  
@@ -31,6 +32,7 @@ function App() {
               <Route path='/sign-up' element={<Cadastro/>}/>
               <Route path='/subscriptions' element={<Subscriptions/>}/>
               <Route path='/subscriptions/:id' element={<SubscriptionCheckout/>}/>
+              <Route path='/home/' element={<Home/>}/>
               
         </Routes>
       </BrowserRouter>
