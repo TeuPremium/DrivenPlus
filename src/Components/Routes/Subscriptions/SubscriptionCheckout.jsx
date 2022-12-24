@@ -25,7 +25,8 @@ export default function(){
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [plan, setPlan] = useState()
     const [perks, setPerks] = useState()
-    
+    const {setUser} = useContext(UserContext)
+
     function onSubmit(data){
         data.membershipId = id
         const config = {
@@ -36,7 +37,7 @@ export default function(){
         console.log(data)
         const submitData = axios.post(`${URL2}`, data, config)
         submitData.then((res) =>{
-                console.log(res)
+                setUser(res.data)
                 navigate('/home')
                 })
         

@@ -8,6 +8,7 @@ import AuthContext from "../Contexts/AuthContext";
 import UserContext from "../Contexts/UserContext";
 import GlobalStyle from "../../Styles/GlobalStyle";
 import URL from "../CommonAssets/URL";
+import NameContext from "../Contexts/NameContext";
 
 
 export default function () {
@@ -16,13 +17,16 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
 const navigate = useNavigate()
 const {setToken} = useContext(AuthContext)
 const {setUser} = useContext(UserContext)
+const {setName} = useContext(NameContext)
 
 function onSubmit(data){ 
     const submitData = axios.post(`${URL}/login`, data)
     submitData.then((res) =>{
+            console.log(res.data)
             res.data.membership ? navigate('/home') : navigate('/subscriptions')
             setToken(res.data.token)
             setUser(res.data)
+            setName(res.data.name)
             })
     
     submitData.catch((err) => {

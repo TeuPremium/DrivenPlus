@@ -13,17 +13,20 @@ import AuthContext from './Components/Contexts/AuthContext';
 import UserContext from './Components/Contexts/UserContext';
 import Loading from './Components/CommonAssets/Loading';
 import Home from './Components/Routes/Home/Home';
+import NameContext from './Components/Contexts/NameContext';
 
 function App() {
  
   const [token, setToken] = useState()
   const [user, setUser] = useState()
+  const [name, setName] = useState()
 
   
 
   return (
     <AuthContext.Provider value={{token, setToken}}>
     <UserContext.Provider value={{user, setUser}}>
+    <NameContext.Provider value={{name, setName}}>
       <BrowserRouter>
         <GlobalStyle/>
         <Routes>
@@ -36,8 +39,10 @@ function App() {
               
         </Routes>
       </BrowserRouter>
+    </NameContext.Provider>
     </UserContext.Provider>
     </AuthContext.Provider>
+
   );
   
 }

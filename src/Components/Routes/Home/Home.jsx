@@ -9,19 +9,33 @@ import axios from "axios";
 import { useEffect } from "react";
 import URL2 from "../../CommonAssets/URL2";
 import UserContext from "../../Contexts/UserContext";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Loading from "../../CommonAssets/Loading";
+import NameContext from "../../Contexts/NameContext";
 
 export default function(){
     const {token} = useContext(AuthContext)
     const [plan, setPlan] = useState()
     const {user} = useContext(UserContext)
+    const {name} = useContext(NameContext)
     console.log(user)
-    const {name} = user
     const perks = user.membership.perks
     console.log(name, user.image)
-   
+    const navigate = useNavigate()
 
+    function removeSub(){
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+        const remove = axios.delete(URL2, config)
+        remove.then(navigate('/subscriptions'))
+        remove.catch(console.log)
+    }
 
-    return(
+    if(token){return(
         <Container>
         <GlobalStyle color='#0e0e13'/>
         <Header>
@@ -34,12 +48,19 @@ export default function(){
         </>
         
         <ChangePlan>
-            <StyledBtn style={{background:'#ff4791', color:'white'}}>Mudar plano</StyledBtn>
-            <StyledBtn style={{background:'#FF4747', color:'white'}}>Cancelar plano</StyledBtn>
+            <Link to="/subscriptions"><StyledBtn style={{background:'#ff4791', color:'white'}}>Mudar plano</StyledBtn></Link>
+            <StyledBtn onClick={removeSub} style={{background:'#FF4747', color:'white'}}>Cancelar plano</StyledBtn>
         </ChangePlan>
         </Container>
     )
 }
+    else{
+        return(
+            <Loading></Loading>
+        )
+    }
+}
+
 
 const Container = styled.div`
     display: flex;

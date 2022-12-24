@@ -7,12 +7,10 @@ import GlobalStyle from "../../../Styles/GlobalStyle"
 import Fail from "../../CommonAssets/Fail"
 import Logo from "../../CommonAssets/Logo"
 import AuthContext from "../../Contexts/AuthContext"
-import UserContext from "../../Contexts/UserContext"
 import URL2 from "../../CommonAssets/URL2"
 import Loading from "../../CommonAssets/Loading"
 
 export default function(){
-    const {user} = useContext(UserContext)
     const {token} = useContext(AuthContext)
     const [plans, setPlans] = useState()
 
@@ -38,8 +36,8 @@ export default function(){
         <GlobalStyle color='#0e0e13'/>
         <span><h1>Escolha seu plano</h1></span>
 
-        {plans.map((n, index) => <Link id={index} style={{textDecoration:'none'}} to={`/subscriptions/${n.id}`}>
-        <PlanCard>
+        {plans.map((n, index) => <Link style={{textDecoration:'none'}} to={`/subscriptions/${n.id}`}>
+        <PlanCard id={index} >
             <Logo src={n.image} ></Logo>
              <span><h2>R$ {n.price}</h2></span> 
         </PlanCard>
