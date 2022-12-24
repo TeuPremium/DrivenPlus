@@ -15,17 +15,20 @@ import Fail from "../../CommonAssets/Fail";
 import Price from "../../CommonAssets/PriceSVG";
 import BenefitSVG from "../../CommonAssets/BenefitSVG";
 import { useNavigate } from "react-router-dom";
+import BackSvg from "../../CommonAssets/Back svg";
+import { Link } from "react-router-dom";
 
 
 export default function(){
     const {token} = useContext(AuthContext)
+    const {setUser} = useContext(UserContext)
+    if(!token ){return(<Fail/>)}
     const params = useParams()
     const id = params.id
     const navigate = useNavigate()
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [plan, setPlan] = useState()
     const [perks, setPerks] = useState()
-    const {setUser} = useContext(UserContext)
 
     function onSubmit(data){
         data.membershipId = id
@@ -63,6 +66,10 @@ export default function(){
     
 
     if(token){if(plan){return(
+        <>
+        <Link to='/subscriptions'>
+        <BackSvg></BackSvg>
+        </Link>
         <Container>
         <GlobalStyle color='#0e0e13'/>
         <Title>
@@ -70,7 +77,7 @@ export default function(){
         <span><h1>Driven Plus</h1></span>
         </Title>
         <Description>
-        <h3><BenefitSVG/> Beneficios:</h3> {perks.map((n, index) => <h3 id={index}>{index+1}. {n.title}</h3>)}
+        <h3><BenefitSVG/> Beneficios:</h3> {perks.map((n, index) => <h3 id={index}>&emsp;&nbsp;{index+1}. {n.title}</h3>)}
         <div><h3><Price/> Preco:</h3> <h3>&emsp;&nbsp;R$ {plan.price}</h3></div>
         </Description>
         <div>
@@ -95,6 +102,7 @@ export default function(){
         {/* <CheckoutConfirm></CheckoutConfirm> */}
 
         </Container>
+        </>
     )}
     else{
         return(

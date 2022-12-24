@@ -40,7 +40,7 @@ return (
         <form onSubmit={handleSubmit(onSubmit)}>
         
         <div><input placeholder="Nome Completo" id='email' name="email" type="text" {...register("name", {required:true})} /></div>
-        {errors.email && <div><h3>Insira seu Email</h3></div>}
+        {errors.email && <div><h3>Insira seu nome completo</h3></div>}
 
         <div><input placeholder="CPF" id='email' name="email" type="number" {...register("cpf", {required:true})} /></div>
         {errors.email && <div><h3>Digite Seu CPF</h3></div>}
@@ -49,7 +49,7 @@ return (
         {errors.email && <div><h3>Insira seu Email</h3></div>}
         
         <div><input id='pwd' name="pwd" placeholder="senha" type="password" {...register("password", { required: true })} /></div>
-        {errors.password && <div>Digite sua senha correta!</div>}
+        {errors.password && <div><h3>Digite sua senha</h3></div>}
         
     <SubmitBtn> <input value="Cadastrar" style={{background:'#ff4791', color:'white'}} type="submit" /></SubmitBtn>
 

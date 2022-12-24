@@ -48,11 +48,11 @@ return (
         {errors.email && <div><h3>Insira seu Email</h3></div>}
         
         <div><input id='pwd' name="pwd" placeholder="senha" type="password" {...register("password", { required: true })} /></div>
-        {errors.password && <div>Digite sua senha correta!</div>}
+        {errors.password && <div><h3>Digite sua senha correta!</h3></div>}
 
-        {/* <Link to="/subscriptions"> */}
+        
     <SubmitBtn> <input value="Entrar" style={{background:'#ff4791', color:'white'}} type="submit" /></SubmitBtn>
-        {/* </Link> */}
+        
     </form>
          <Link to='/sign-up'>
          <LoginHook> Nao possui uma conta? Cadastre-se.</LoginHook>
