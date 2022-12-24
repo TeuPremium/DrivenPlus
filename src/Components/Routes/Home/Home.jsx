@@ -13,12 +13,14 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../CommonAssets/Loading";
 import NameContext from "../../Contexts/NameContext";
+import Fail from '../../CommonAssets/Fail'
 
 export default function(){
     const {token} = useContext(AuthContext)
-    const [plan, setPlan] = useState()
     const {user} = useContext(UserContext)
     const {name} = useContext(NameContext)
+    if(!(token || name || user)){return(<Fail/>)}
+    const [plan, setPlan] = useState()
     console.log(user)
     const perks = user.membership.perks
     console.log(name, user.image)

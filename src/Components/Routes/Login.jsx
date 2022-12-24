@@ -40,7 +40,7 @@ return (
 
     <Container>
         <GlobalStyle color="#0e0e13"></GlobalStyle>
-        <Logo/>
+        <img src="./Driven.svg"/>
 
         <form onSubmit={handleSubmit(onSubmit)}>
         
@@ -86,6 +86,10 @@ const Container = styled.div`
         color:#dbdbdb;    
         }
         }
+    img{
+    margin-top: 80px;
+    margin-bottom: 80px ;
+    }
 `
 
 const SubmitBtn = styled.div`
