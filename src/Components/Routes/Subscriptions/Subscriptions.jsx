@@ -15,6 +15,8 @@ export default function(){
     const {user} = useContext(UserContext)
     const {token} = useContext(AuthContext)
     const [plans, setPlans] = useState()
+
+    
     useEffect( ()=>{
         const config = {
             headers: {
@@ -36,7 +38,7 @@ export default function(){
         <GlobalStyle color='#0e0e13'/>
         <span><h1>Escolha seu plano</h1></span>
 
-        {plans.map((n) => <Link style={{textDecoration:'none'}} to={`/subscriptions/${n.id}`}>
+        {plans.map((n, index) => <Link id={index} style={{textDecoration:'none'}} to={`/subscriptions/${n.id}`}>
         <PlanCard>
             <Logo src={n.image} ></Logo>
              <span><h2>R$ {n.price}</h2></span> 

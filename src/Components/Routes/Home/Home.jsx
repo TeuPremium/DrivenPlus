@@ -8,34 +8,29 @@ import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import URL2 from "../../CommonAssets/URL2";
+import UserContext from "../../Contexts/UserContext";
 
 export default function(){
     const {token} = useContext(AuthContext)
     const [plan, setPlan] = useState()
-    useEffect( ()=>{
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }
-        
-        const promise = axios.get(`${URL2}memberships`, config)
-        promise.then((res) => {setPlan(res.data)})
-        promise.catch(console.log)
-        
-    } ,[]
-    )
+    const {user} = useContext(UserContext)
+    console.log(user)
+    const {name} = user
+    const perks = user.membership.perks
+    console.log(name, user.image)
+   
+
 
     return(
         <Container>
         <GlobalStyle color='#0e0e13'/>
         <Header>
-        <LogoPosition><Logo src={0}/></LogoPosition>
+        <LogoPosition><Logo src={user.membership.image}/></LogoPosition>
         <UserPosition><UserSVG/></UserPosition>
         </Header>
-        <span><h1>Ola, nome</h1></span>
+        <span><h1>Ola, {name}</h1></span>
         <>
-        {<StyledBtn style={{background:'#ff4791', color:'white'}}></StyledBtn>}
+        {perks.map((n) => <a href={n.link} target="_blank"><StyledBtn style={{background:'#ff4791', color:'white'}}>{n.title}</StyledBtn></a>)}
         </>
         
         <ChangePlan>
@@ -67,7 +62,9 @@ const UserPosition = styled.div`
 
 const LogoPosition = styled.div`
     position: relative;
-    top:-25px;
+    top:30px;
+    left: 20px;
+    margin-bottom: 100px;
     
 `
 
