@@ -17,7 +17,7 @@ const navigate = useNavigate()
 
 
 function onSubmit(data){ 
-    const submitData = axios.post(`${URL}/sign-up`, data)
+    const submitData = axios.post(`${URL}sign-up`, data)
     submitData.then((res) =>{
             navigate('/')
             })
