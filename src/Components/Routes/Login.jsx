@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import Logo from "../CommonAssets/Logo";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";

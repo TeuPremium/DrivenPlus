@@ -3,9 +3,6 @@ import styled from "styled-components";
 import Logo from "../CommonAssets/Logo";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useContext } from "react";
-import AuthContext from "../Contexts/AuthContext";
-import UserContext from "../Contexts/UserContext";
 import GlobalStyle from "../../Styles/GlobalStyle";
 import URL from "../CommonAssets/URL";
 

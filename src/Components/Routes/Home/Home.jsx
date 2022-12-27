@@ -4,9 +4,7 @@ import Logo from "../../CommonAssets/Logo";
 import UserSVG from "../../CommonAssets/UserSVG";
 import { useContext } from "react";
 import AuthContext from "../../Contexts/AuthContext";
-import { useState } from "react";
 import axios from "axios";
-import { useEffect } from "react";
 import URL2 from "../../CommonAssets/URL2";
 import UserContext from "../../Contexts/UserContext";
 import { Link } from "react-router-dom";
@@ -20,7 +18,6 @@ export default function(){
     const {user} = useContext(UserContext)
     const {name} = useContext(NameContext)
     if(!(token || name || user.membership)){return(<Fail/>)}
-    const [plan, setPlan] = useState()
     console.log(user.data)
     const perks = user.membership.perks
     console.log(name, user.image)
