@@ -76,7 +76,7 @@ const Container = styled.div`
         border-style: solid;
         border-radius: 5px;
         border-width: 1px;
-        margin-bottom: 5px;
+        margin-bottom: 15px;
         box-sizing: border-box;
         padding-left: 11px;
         font-weight: 400;

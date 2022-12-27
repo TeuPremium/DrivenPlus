@@ -29,24 +29,29 @@ export default function(){
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [plan, setPlan] = useState()
     const [perks, setPerks] = useState()
+    const [display, setDisplay] = useState('none')
+    const [data, setData] = useState('')
 
-    function onSubmit(data){
-        data.membershipId = id
+    function onSubmit(e){
+        console.log(e)
+        console.log(data)
+        if(data){data.membershipId = id
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }
-        console.log(data)
-        const submitData = axios.post(`${URL2}`, data, config)
+        if(display!="none"){const submitData = axios.post(`${URL2}`, data, config)
         submitData.then((res) =>{
-                setUser(res.data)
-                navigate('/home')
-                })
+            setUser(res.data)
+            navigate('/home')
+        })
         
         submitData.catch((err) => {
             alert(err.response.data.message)
-        })
+        })}}
+        if(e != 0){setData(e)}
+        setDisplay('')
         }
 
     useEffect( ()=>{
@@ -99,7 +104,10 @@ export default function(){
     <SubmitBtn> <input value="Cadastrar" style={{background:'#ff4791', color:'white'}} type="submit" /></SubmitBtn>
     </form>
         </div>
-        {/* <CheckoutConfirm></CheckoutConfirm> */}
+         <CheckoutConfirm display={display}>
+            <p>Tem certeza de que deseja assinar o plano {plan.name} (R$ {plan.price})</p>
+            <button style={{background:'#cecece'}} onClick={() => setDisplay('none')}>NAO</button> <button onClick={() => onSubmit(0)} style={{background:'#ff4791'}}>SIM</button>
+         </CheckoutConfirm>
 
         </Container>
         </>
@@ -158,12 +166,37 @@ const SubmitBtn = styled.div`
 `
 
 const CheckoutConfirm = styled.div`
+    display: ${prop => prop.display};
     width: 248px;
     height: 210px;
     z-index: 1;
     background-color: white;
     position: fixed;
     top: 40%;
+    border-radius: 10px;
+    color: black;
+    font-size: 18px;
+    padding-top: 33px;
+    padding-left: 22px;
+    padding-right: 22px;
+    text-align: center;
+    button{
+        width:95px ;
+        height: 45px;
+        border-color:#d4d4d4;
+        border-style: solid;
+        border-radius: 5px;
+        border-width: 1px;
+        margin-bottom: 5px;
+        box-sizing: border-box;
+        padding-left: 11px;
+        font-weight: 400;
+        font-size: 14px;
+        color: white;
+        ::placeholder{
+        color:#dbdbdb;    
+        }
+        }
 `
 
 const Title = styled.div `

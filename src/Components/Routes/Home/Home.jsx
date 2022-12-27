@@ -21,7 +21,7 @@ export default function(){
     const {name} = useContext(NameContext)
     if(!(token || name || user)){return(<Fail/>)}
     const [plan, setPlan] = useState()
-    console.log(user)
+    console.log(user.data)
     const perks = user.membership.perks
     console.log(name, user.image)
     const navigate = useNavigate()

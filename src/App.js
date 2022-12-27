@@ -14,6 +14,7 @@ import UserContext from './Components/Contexts/UserContext';
 import Loading from './Components/CommonAssets/Loading';
 import Home from './Components/Routes/Home/Home';
 import NameContext from './Components/Contexts/NameContext';
+import UserStorage from './Components/Contexts/UserStorage';
 
 function App() {
  
@@ -21,8 +22,17 @@ function App() {
   const [user, setUser] = useState()
   const [name, setName] = useState()
 
+  let storedUser = (localStorage.getItem('user'))
   
-
+  if(storedUser){
+    if(!user){setUser(storedUser)
+    setToken(storedUser.token)
+  }}
+  else{
+    console.log('eu careca')
+  }
+  
+  console.log(user, token)
   return (
     <AuthContext.Provider value={{token, setToken}}>
     <UserContext.Provider value={{user, setUser}}>
@@ -48,3 +58,4 @@ function App() {
 }
 
 export default App;
+

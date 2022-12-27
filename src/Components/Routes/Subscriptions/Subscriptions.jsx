@@ -13,8 +13,6 @@ import Loading from "../../CommonAssets/Loading"
 export default function(){
     const {token} = useContext(AuthContext)
     const [plans, setPlans] = useState()
-
-    
     useEffect( ()=>{
         const config = {
             headers: {
@@ -28,6 +26,7 @@ export default function(){
         
     } ,[]
     )
+    
 
     if(token){
         if(plans)
@@ -35,13 +34,14 @@ export default function(){
         <Container>
         <GlobalStyle color='#0e0e13'/>
         <span><h1>Escolha seu plano</h1></span>
-
-        {plans.map((n, index) => <Link style={{textDecoration:'none'}} to={`/subscriptions/${n.id}`}>
-        <PlanCard id={index} >
-            <Logo src={n.image} ></Logo>
-             <span><h2>R$ {n.price}</h2></span> 
-        </PlanCard>
-        </Link>)}
+        <ul>
+            {plans.map((n, index) => <Link style={{textDecoration:'none'}} to={`/subscriptions/${n.id}`}>
+            <PlanCard id={index} >
+                <Logo src={n.image} ></Logo>
+                <span><h2>R$ {n.price}</h2></span> 
+            </PlanCard>
+            </Link>)}
+        </ul>
 
         </Container>
     )}
@@ -73,7 +73,7 @@ const Container = styled.div`
     }
 `
 
-const PlanCard = styled.div`
+const PlanCard = styled.li`
     margin-top: 10px;
     border:3px solid #7e7e7e;
     border-radius: 12px;
