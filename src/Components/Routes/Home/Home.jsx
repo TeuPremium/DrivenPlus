@@ -19,7 +19,7 @@ export default function(){
     const {token} = useContext(AuthContext)
     const {user} = useContext(UserContext)
     const {name} = useContext(NameContext)
-    if(!(token || name || user)){return(<Fail/>)}
+    if(!(token || name || user.membership)){return(<Fail/>)}
     const [plan, setPlan] = useState()
     console.log(user.data)
     const perks = user.membership.perks
